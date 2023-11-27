@@ -1,0 +1,34 @@
+<!-- <p>user-list works!</p> -->
+
+
+<div class="row">
+<div class="col-8 col-offset-2">
+    <router-outlet></router-outlet>
+    <button [routerLink]="'add'" class="btn-sucess my-5">Add New</button>
+    
+    <table class="table" [border]="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of allUserData ,let i = index" userDir [bgColor]="">
+                <td>{{i +1}}</td>
+                <td>{{user.fName}}</td>
+                <td>{{user.lName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.age}}</td>
+                <td><button [routerLink]="['edit/', user.id]" class="btn-primary" (click)="editData(user.id ?? 0)">Edit</button></td>
+                <td><button class="btn-danger" (click)="OnDelete(user.id ?? 0)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>

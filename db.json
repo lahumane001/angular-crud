@@ -1,0 +1,25 @@
+{
+  "userData": [
+    {
+      "id": 1,
+      "fName": "Lahu",
+      "lName": "Mane",
+      "email": "abc@gmail.com",
+      "age": 24
+    },
+    {
+      "fName": "gaurav",
+      "lName": "Kudale",
+      "email": "gaurav@gmail",
+      "age": "23",
+      "id": 3
+    },
+    {
+      "fName": "ram",
+      "lName": "shinde",
+      "email": "ram@gmail.com",
+      "age": "25",
+      "id": 4
+    }
+  ]
+}

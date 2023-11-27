@@ -1,0 +1,25 @@
+<!-- <p>user-edit works!</p> -->
+<h3 class="py-3">Update Data</h3>
+
+<div class="row">
+    <form [formGroup]="editFormData" (ngSubmit)="OnUpdate()">
+        <div class="form-group">
+          <label for="fName">First Name</label>
+          <input type="text" class="form-control" id="fName" formControlName="fName">
+        </div>
+        <div class="form-group">
+          <label for="lName">Last Number</label>
+          <input type="text" class="form-control" id="lName" formControlName="lName">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="text" class="form-control" id="age" formControlName="age">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+</div>

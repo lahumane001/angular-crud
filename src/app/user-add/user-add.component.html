@@ -1,0 +1,24 @@
+<!-- <p>user-add works!</p> -->
+
+<div class="row">
+    <form [formGroup]="userFormData" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="fName">First Name</label>
+          <input type="text" class="form-control" id="fName" formControlName="fName">
+        </div>
+        <div class="form-group">
+          <label for="lName">Last Number</label>
+          <input type="text" class="form-control" id="lName" formControlName="lName">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="text" class="form-control" id="age" formControlName="age">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add New</button>
+      </form>
+</div>
