@@ -1,25 +1,42 @@
 <!-- <p>user-edit works!</p> -->
-<h3 class="py-3">Update Data</h3>
 
 <div class="row">
+  <div class="col-6 offset-3">
+    <h3 class="py-3 text-secondary text-center">Update Data</h3>
+    
     <form [formGroup]="editFormData" (ngSubmit)="OnUpdate()">
-        <div class="form-group">
-          <label for="fName">First Name</label>
+      <div class="form-group">
+          <label for="fName">First Name<span class="text-danger">*</span></label>
           <input type="text" class="form-control" id="fName" formControlName="fName">
+          <span class="text-danger"*ngIf="editFormData.get('fName')?.invalid && editFormData.get('fName')?.touched">
+            <ng-container *ngIf="editFormData.get('fName')?.errors?.['required']">first name is required...</ng-container> 
+        <ng-container *ngIf="editFormData.get('fName')?.errors?.['minlength']">First Name is required minimum three letter</ng-container>
+          </span>
         </div>
         <div class="form-group">
-          <label for="lName">Last Number</label>
+          <label for="lName">Last Number<span class="text-danger">*</span></label>
           <input type="text" class="form-control" id="lName" formControlName="lName">
+          <span class="text-danger"*ngIf="editFormData.get('lName')?.invalid && editFormData.get('lName')?.touched">
+            <ng-container *ngIf="editFormData.get('lName')?.errors?.['required']">Last name is required...</ng-container> 
+            <ng-container *ngIf="editFormData.get('lName')?.errors?.['minlength']">Last Name is required minimum three letter</ng-container>
+          </span>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">Email<span class="text-danger">*</span></label>
           <input type="text" class="form-control" id="email" formControlName="email">
+          <span class="text-danger"*ngIf="editFormData.get('email')?.invalid && editFormData.get('email')?.touched">email is required...</span>
         </div>
         <div class="form-group">
-          <label for="age">Age</label>
+          <label for="age">Age<span class="text-danger">*</span></label>
           <input type="text" class="form-control" id="age" formControlName="age">
+          <span class="text-danger"*ngIf="editFormData.get('age')?.invalid && editFormData.get('age')?.touched">
+            <!-- <ng-container *ngIf="editFormData.get('age')?.errors?.['required']">Age is required...</ng-container>
+            <ng-container *ngIf="editFormData.get('age')?.errors?.['min'] && editFormData.get('age')?.errors?.['max']">Age is mini 18 and max 75</ng-container> -->
+            Age is required minimum 18 to 75...
+          </span>
         </div>
         
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary btn-block rounded-border">Update</button>
       </form>
+    </div>
 </div>

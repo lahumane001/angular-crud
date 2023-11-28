@@ -4,12 +4,14 @@
 <div class="row">
 <div class="col-8 col-offset-2">
     <router-outlet></router-outlet>
-    <button [routerLink]="'add'" class="btn-sucess my-5">Add New</button>
+    <button class="btn btn-primary my-5 rounded-border" [routerLink]="'add'">Add New</button>
+    <!-- <button [routerLink]="'add'" class="btn-sucess btn my-5">Add New</button> -->
     
     <table class="table" [border]="1">
-        <thead>
+        <thead class="thead-dark text-center">
             <tr>
                 <th>Id</th>
+                <th>Short Name</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -21,12 +23,13 @@
         <tbody>
             <tr *ngFor="let user of allUserData ,let i = index" userDir [bgColor]="">
                 <td>{{i +1}}</td>
+                <td class="round text-secondary text-center">{{user.fName | userPipe}}{{user.lName | userPipe}}</td>
                 <td>{{user.fName}}</td>
                 <td>{{user.lName}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.age}}</td>
-                <td><button [routerLink]="['edit/', user.id]" class="btn-primary" (click)="editData(user.id ?? 0)">Edit</button></td>
-                <td><button class="btn-danger" (click)="OnDelete(user.id ?? 0)">Delete</button></td>
+                <td><button [routerLink]="['edit/', user.id]" class="btn btn-primary rounded-border" (click)="editData(user.id ?? 0)">Edit</button></td>
+                <td><button class="btn btn-danger rounded-border" (click)="OnDelete(user.id ?? 0)">Delete</button></td>
             </tr>
         </tbody>
     </table>

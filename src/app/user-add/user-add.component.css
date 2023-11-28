@@ -1,0 +1,4 @@
+input.ng-touched.ng-ivalid{
+    border:1px solid red;
+    box-shadow : 0 0 22px #ff000030 inset
+}

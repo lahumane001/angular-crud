@@ -1,24 +1,40 @@
 <!-- <p>user-add works!</p> -->
 
-<div class="row">
+<div class="row pt-5">
+  <div class="col-6 offset-3">
+    <h3 class="text-secondary text-center mb-2">Add New Data</h3>
     <form [formGroup]="userFormData" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="fName">First Name<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" placeholder="First Name" id="fName" formControlName="fName">
+        <span class="text-danger"*ngIf="userFormData.get('fName')?.invalid && userFormData.get('fName')?.touched">
+         <ng-container *ngIf="userFormData.get('fName')?.errors?.['required']">first name is required...</ng-container> 
+        <ng-container *ngIf="userFormData.get('fName')?.errors?.['minlength']">First Name is required minimum three letter</ng-container>
+        </span>
+      </div>
         <div class="form-group">
-          <label for="fName">First Name</label>
-          <input type="text" class="form-control" id="fName" formControlName="fName">
+          <label for="lName">Last Number<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" placeholder="Last Name" id="lName" formControlName="lName">
+          <span class="text-danger"*ngIf="userFormData.get('lName')?.invalid && userFormData.get('lName')?.touched">
+            <ng-container *ngIf="userFormData.get('lName')?.errors?.['required']">Last name is required...</ng-container> 
+            <ng-container *ngIf="userFormData.get('lName')?.errors?.['minlength']">Last Name is required minimum three letter</ng-container>
+            </span>
         </div>
         <div class="form-group">
-          <label for="lName">Last Number</label>
-          <input type="text" class="form-control" id="lName" formControlName="lName">
+          <label for="email">Email<span class="text-danger">*</span></label>
+          <input type="email" class="form-control" placeholder="abc@gmail.com" id="email" formControlName="email">
+          <span class="text-danger"*ngIf="userFormData.get('email')?.invalid && userFormData.get('email')?.touched">Email is required...</span>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" formControlName="email">
-        </div>
-        <div class="form-group">
-          <label for="age">Age</label>
-          <input type="text" class="form-control" id="age" formControlName="age">
+          <label for="age">Age<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" placeholder="Enter your age" id="age" formControlName="age">
+          <span class="text-danger"*ngIf="userFormData.get('age')?.invalid && userFormData.get('age')?.touched">
+            <!-- <ng-container *ngIf="userFormData.get('age')?.errors?.['required']">Age is required...</ng-container> -->
+            <!-- <ng-container *ngIf="userFormData.get('age')?.errors?.['min'] && userFormData.get('age')?.errors?.['max']">Age is minimum 18 and maximum 75</ng-container> -->
+            Age is required minimum 18 to 75...</span>
         </div>
         
-        <button type="submit" class="btn btn-primary">Add New</button>
+        <button type="submit" class="btn btn-primary btn-block rounded-border" [disabled]="userFormData.invalid">Add New</button>
       </form>
+    </div>
 </div>

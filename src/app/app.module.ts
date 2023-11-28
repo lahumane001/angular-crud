@@ -10,6 +10,7 @@ import { UserDataService } from './shared/userService.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { userDirective } from './shared/userDirective.directive';
+import { UserNamePipe } from './shared/user-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { userDirective } from './shared/userDirective.directive';
     UserListComponent,
     UserEditComponent,
     UserAddComponent,
-    userDirective
+    userDirective,
+    UserNamePipe
   ],
   imports: [
     BrowserModule,
