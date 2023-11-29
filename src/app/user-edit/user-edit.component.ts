@@ -10,44 +10,43 @@ import { Subscription, map } from 'rxjs';
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
-export class UserEditComponent implements OnInit ,OnDestroy{
+export class UserEditComponent implements OnInit, OnDestroy {
   // val!:UserDataType[];
-  val:any;
-  userData!:UserDataType;
-  userSubscription : Subscription|undefined
-  editFormData !:FormGroup;
-  constructor(private activateroute : ActivatedRoute , private userServ : UserDataService,private route : Router){}
-  
+  val: any;
+  userData: any;
+  userSubscription: Subscription | undefined
+  editFormData !: FormGroup;
+  constructor(private activateroute: ActivatedRoute, private userServ: UserDataService, private route: Router) { }
+
   ngOnInit(): void {
     this.editFormData = new FormGroup({
-      fName : new FormControl('', [Validators.required , Validators.minLength(3)]),
-      lName : new FormControl('' , [Validators.required , Validators.minLength(3)]),
-      email : new FormControl('' , [Validators.required , Validators.email]),
-      age : new FormControl('', [Validators.required , Validators.min(18) , Validators.max(75)]),
+      fName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      lName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      age: new FormControl('', [Validators.required, Validators.min(18), Validators.max(75)]),
     });
 
-   this.userSubscription =  this.userServ.getData().subscribe((res=>{
-      this.userData = res.find((res:any)=>{
-        return res.id == this.val.id
-      })
-      console.log(this.userData)
-      this.editFormData.patchValue(this.userData)
-    }))
-    this.userSubscription = this.activateroute.params.subscribe((param:Params)=>{
+    this.userSubscription = this.activateroute.params.subscribe((param: Params) => {
       this.val = param;
       console.log(this.val.id)
     })
-  }
-  OnUpdate(){
-    this.userSubscription =  this.userServ.updateUser(this.editFormData.value ,this.val.id).subscribe(res=>{
+    this.userSubscription = this.userServ.getDataById(this.val.id).subscribe((res) => {
       console.log(res)
-      
+      this.userData = res;
+      this.editFormData.patchValue(this.userData)
+    })
+  }
+  OnUpdate() {
+    this.userSubscription = this.userServ.updateUser(this.editFormData.value, this.val.id).subscribe(res => {
+      console.log(res)
+
     })
     console.log(this.editFormData.value)
     this.route.navigate([''])
+
   }
   ngOnDestroy(): void {
-    if(this.userSubscription){
+    if (this.userSubscription) {
       this.userSubscription?.unsubscribe();
     }
   }

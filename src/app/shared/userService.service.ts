@@ -24,10 +24,6 @@ export class UserDataService{
     }
 
     deleteUser(id: number): Observable<void> {
-
-      if(confirm('Do You want to delete this user?')){
-      //   // return this.http.delete<void>(`${this.baseUrl}/${id}`)
-      }
       return this.http.delete<void>(`${this.baseUrl}/${id}`)
     }
     getDataById(id:number){

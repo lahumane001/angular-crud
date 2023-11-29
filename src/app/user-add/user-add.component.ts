@@ -26,12 +26,10 @@ ngOnInit(): void {
 }
 onSubmit(){
   
-  this.userSubscription = this.userserv.postData(this.userFormData.value).subscribe((res =>{
+  this.userSubscription = this.userserv.postData(this.userFormData.value)
+  .subscribe((res =>{
     console.log(res)
-   
-    // this.userserv.getData().subscribe(res=>{
-    //   console.log(res)
-    // })
+    
   }))
   this.router.navigate([''])
 }

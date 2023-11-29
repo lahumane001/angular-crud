@@ -8,7 +8,7 @@
         <label for="fName">First Name<span class="text-danger">*</span></label>
         <input type="text" class="form-control" placeholder="First Name" id="fName" formControlName="fName">
         <span class="text-danger"*ngIf="userFormData.get('fName')?.invalid && userFormData.get('fName')?.touched">
-         <ng-container *ngIf="userFormData.get('fName')?.errors?.['required']">first name is required...</ng-container> 
+         <ng-container *ngIf="userFormData.get('fName')?.errors?.['required']">First name is required...</ng-container> 
         <ng-container *ngIf="userFormData.get('fName')?.errors?.['minlength']">First Name is required minimum three letter</ng-container>
         </span>
       </div>
@@ -31,7 +31,8 @@
           <span class="text-danger"*ngIf="userFormData.get('age')?.invalid && userFormData.get('age')?.touched">
             <!-- <ng-container *ngIf="userFormData.get('age')?.errors?.['required']">Age is required...</ng-container> -->
             <!-- <ng-container *ngIf="userFormData.get('age')?.errors?.['min'] && userFormData.get('age')?.errors?.['max']">Age is minimum 18 and maximum 75</ng-container> -->
-            Age is required minimum 18 to 75...</span>
+            Age is required minimum 18 to 75...
+          </span>
         </div>
         
         <button type="submit" class="btn btn-primary btn-block rounded-border" [disabled]="userFormData.invalid">Add New</button>

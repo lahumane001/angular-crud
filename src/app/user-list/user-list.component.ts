@@ -9,41 +9,47 @@ import { Router } from '@angular/router';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit , OnDestroy{
-userSubscription : Subscription|undefined
-allUserData!:UserDataType[];  
-  constructor(private userServ : UserDataService ,private route : Router){}
-  
-  
+export class UserListComponent implements OnInit, OnDestroy {
+  editUserData: any;
+  userSubscription: Subscription | undefined
+  allUserData!: UserDataType[];
+  constructor(private userServ: UserDataService, private route: Router) { }
+
+
   ngOnInit(): void {
-  this.fetchData()
+    this.fetchData()
   }
-  fetchData(){
-  this.userSubscription = this.userServ.getData().subscribe((res =>{
+  fetchData() {
+    this.userSubscription = this.userServ.getData().subscribe((res => {
       console.log(res)
       this.allUserData = res;
-     }))
+    }))
   }
 
-  OnDelete(id:number){
-    this.userSubscription = this.userServ.deleteUser(id).subscribe(()=>{
-      console.log('delete this user')
-      this.fetchData()
-    })
+  OnDelete(id: number) {
+    if (confirm('Do You want to delete this user?')) {
+    this.userSubscription = this.userSubscription = this.userServ.deleteUser(id).subscribe((res) => {
 
- console.log(id)
+        console.log('delete this user')
+        this.fetchData()
+      })
+    }
+
+    console.log(id)
   }
 
-  editData(id : number){
+  editData(id: number) {
     // console.log(id)
-    // this.userServ.getDataById(id).subscribe((res) => {
-    //   console.log(res)
-    //   // this.route.navigate(['edit' , res])
+    // this.userSubscription = this.userServ.getDataById(id).subscribe((res) => {
+    //   this.editUserData = res
+    //   console.log(this.editUserData)
+    //   localStorage.setItem('editUser', JSON.stringify(this.editUserData))
+    //   this.route.navigate(['edit', id])
     // })
 
   }
   ngOnDestroy(): void {
-    if(this.userSubscription){
+    if (this.userSubscription) {
       this.userSubscription?.unsubscribe();
     }
   }
